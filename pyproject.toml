@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airline-disruption-recovery-gurobi"
+version = "0.1.0"
+description = "Aircraft-flow MILP for airline disruption recovery with Gurobi"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "gurobipy>=11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+airline-disruption = "airline_disruption.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "integration: tests requiring an active Gurobi license",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

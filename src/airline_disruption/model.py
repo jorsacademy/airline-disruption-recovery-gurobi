@@ -31,7 +31,6 @@ def build_model(
     if not 0.0 <= alpha <= 1.0:
         raise ValueError("alpha must be between 0 and 1")
 
-    flight_by_id = {flight.flight_id: flight for flight in flights}
     networks = build_aircraft_networks(aircraft, flights, turnaround_minutes)
 
     model = gp.Model("airline_disruption_recovery")
@@ -61,15 +60,12 @@ def build_model(
         GRB.MINIMIZE,
     )
 
-    # A scheduled flight can be operated by at most one aircraft.
     for flight in flights:
         model.addConstr(
             gp.quicksum(x[ac.aircraft_id, flight.flight_id] for ac in aircraft) <= 1,
             name=f"unique[{flight.flight_id}]",
         )
 
-    # Exact path/assignment linking: if an aircraft operates a flight, its path enters
-    # and leaves that flight exactly once; otherwise the path cannot traverse it.
     for ac in aircraft:
         ac_id = ac.aircraft_id
         source = f"source_{ac_id}"
@@ -92,8 +88,6 @@ def build_model(
             model.addConstr(inflow == x[ac_id, f_id], name=f"in_link[{ac_id},{f_id}]")
             model.addConstr(outflow == x[ac_id, f_id], name=f"out_link[{ac_id},{f_id}]")
 
-    # Airport capacity is a fraction of the nominal number of arrivals/departures.
-    # Integer flight counts use floor semantics naturally through the <= constraint.
     for airport in airports:
         departing = [f.flight_id for f in flights if f.origin == airport]
         arriving = [f.flight_id for f in flights if f.destination == airport]

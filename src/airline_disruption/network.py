@@ -12,7 +12,7 @@ def build_aircraft_networks(
     flights: list[Flight],
     turnaround_minutes: int = 60,
 ) -> dict[str, list[Arc]]:
-    """Build feasible source/flight/sink arcs for each aircraft."""
+    """Build feasible source/flight/sink arcs for a single operational horizon."""
     if turnaround_minutes < 0:
         raise ValueError("turnaround_minutes must be non-negative")
 
@@ -24,7 +24,7 @@ def build_aircraft_networks(
     for ac in aircraft:
         source = f"source_{ac.aircraft_id}"
         sink = f"sink_{ac.aircraft_id}"
-        arcs: list[Arc] = [(source, sink)]  # aircraft may remain idle
+        arcs: list[Arc] = [(source, sink)]
 
         for flight in flights_by_origin.get(ac.start_airport, []):
             arcs.append((source, flight.flight_id))
@@ -35,11 +35,7 @@ def build_aircraft_networks(
                     continue
                 if first.destination != second.origin:
                     continue
-                second_departure = second.departure
-                # A next-day connection is allowed when the clock wrapped.
-                while second_departure < first.arrival + turnaround_minutes:
-                    second_departure += 24 * 60
-                if second_departure - first.arrival < 24 * 60:
+                if second.departure >= first.arrival + turnaround_minutes:
                     arcs.append((first.flight_id, second.flight_id))
 
         for flight in flights:

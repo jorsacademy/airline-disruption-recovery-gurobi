@@ -1,0 +1,30 @@
+{
+  "crew_rules": {
+    "base": "IST",
+    "min_connection": 30,
+    "max_duty": 600,
+    "max_block": 300,
+    "max_sit": 180,
+    "max_legs": 4,
+    "require_base_return_validation": true,
+    "require_base_return_scaling": false
+  },
+  "scaling_waves": [1, 2, 3],
+  "column_generation": {
+    "reduced_cost_tolerance": 1e-8,
+    "max_iterations": 100
+  },
+  "branch_and_price_lite": {
+    "max_nodes": 60,
+    "branching": "generated pairing variable x_p = 0 or 1",
+    "node_pricing": true
+  },
+  "validation_contract": [
+    "resource pricing must satisfy block, sit, duty and base-return rules where enabled",
+    "RCSP pricing must agree with exhaustive references on tractable cases",
+    "branch-and-price-lite must match full integer enumeration on the toy instance",
+    "coverage must remain feasible",
+    "LP bound, restricted integer objective and branch-and-price objective must be reported separately",
+    "runtime and generated-column counts must be reported"
+  ]
+}

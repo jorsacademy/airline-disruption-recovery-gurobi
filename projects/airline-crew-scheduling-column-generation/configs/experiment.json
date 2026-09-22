@@ -1,0 +1,19 @@
+{
+  "base": "IST",
+  "min_connection_minutes": 30,
+  "max_duty_minutes": 600,
+  "max_legs_per_pairing": 4,
+  "reduced_cost_tolerance": 1e-8,
+  "max_iterations": 100,
+  "reference": "full_pairing_enumeration_lp_on_toy_instance",
+  "pricing": {
+    "reference": "exhaustive_reduced_cost_search",
+    "primary": "acyclic_label_setting_rcsp"
+  },
+  "scaling_smoke_test": {
+    "generator": "hub_timetable",
+    "waves": 3,
+    "destinations": ["ADB", "ESB", "AYT"]
+  },
+  "validation_rule": "RCSP pricing must match exhaustive pricing when enumeration is tractable"
+}

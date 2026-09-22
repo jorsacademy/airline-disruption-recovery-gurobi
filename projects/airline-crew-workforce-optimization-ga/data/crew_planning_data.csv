@@ -1,0 +1,6 @@
+year,narrowbody_demand,widebody_demand,narrowbody_attrition_rate,widebody_attrition_rate,max_narrowbody_hires,max_widebody_hires,max_nb_to_wb_training
+2027,420,180,0.040,0.030,65,35,28
+2028,430,195,0.045,0.035,65,35,32
+2029,425,215,0.050,0.040,60,40,36
+2030,405,240,0.050,0.040,55,40,40
+2031,390,265,0.055,0.045,50,45,42

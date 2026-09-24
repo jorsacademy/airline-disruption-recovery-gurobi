@@ -1,4 +1,24 @@
-# Airline Disruption Recovery with Gurobi
+# Aviation Operations Optimization
+
+<!-- portfolio-umbrella:start -->
+## Portfolio role
+
+This repository is the primary umbrella repository for this Jors Academy research area. Related projects have been consolidated under `projects/` so the methods, implementations, experiments, and case studies can be maintained and explored from one place.
+
+### Included projects
+
+- [`aircraft-allocation-under-uncertain-demand`](projects/aircraft-allocation-under-uncertain-demand/)
+- [`aircraft-maintenance-scheduling-gurobi`](projects/aircraft-maintenance-scheduling-gurobi/)
+- [`airline-crew-scheduling-column-generation`](projects/airline-crew-scheduling-column-generation/)
+- [`airline-crew-workforce-optimization-ga`](projects/airline-crew-workforce-optimization-ga/)
+- [`airline-operations-under-uncertainty-stochastic-optimization`](projects/airline-operations-under-uncertainty-stochastic-optimization/)
+- [`airport-checkin-counter-optimization-erlang-c`](projects/airport-checkin-counter-optimization-erlang-c/)
+- [`airport-checkin-simulation-optimization`](projects/airport-checkin-simulation-optimization/)
+- [`aviation-crew-scheduling-milp`](projects/aviation-crew-scheduling-milp/)
+- [`metroglobal-airport-counter-optimization`](projects/metroglobal-airport-counter-optimization/)
+
+Each consolidated project keeps its own files and a `SOURCE_REPOSITORY.md` provenance record. The snapshot preserves the source repository's default-branch files at consolidation time; repository-level history and metadata remain separate from the snapshot.
+<!-- portfolio-umbrella:end -->
 
 A mixed-integer optimization model for airline disruption recovery using aircraft-flow networks and airport-capacity degradation scenarios.
 
